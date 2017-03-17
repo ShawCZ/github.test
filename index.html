@@ -252,6 +252,152 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="shawcz.github.io/2017/03/17/Java数组/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shaw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shaw的开发之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/17/Java数组/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-17T10:06:58+08:00">
+                2017-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#Java数组:Array</p>
+<p>##一、数组的常用方法</p>
+<p>###1.定义一个数组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int[] aArray = new int[10];               //动态定义</div><div class="line">String[] bArray = &#123;&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;&#125;       //两种静态定义方式</div><div class="line">String[] bArray = new String[]&#123;&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;&#125;</div></pre></td></tr></table></figure></p>
+<p><code>注:(1)动态定义数组指定了数组的长度，但没有初始化值，没有给定具体的元素</code><br><code>(2)静态定义数组在分配内存空间的同时还初始化了值，即给定具体的元素</code></p>
+<p>###2.打印一个数组:toString()方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123;1,2,3,4,5,6&#125;;</div><div class="line">String intArrayString = Arrays.toString(intAray);</div><div class="line"></div><div class="line">System.out.println(intArray);          </div><div class="line">//打印结果为乱码，因为intArray只是一个地址引用，存在与栈里；</div><div class="line"></div><div class="line">System.out.println(intArrayString);    </div><div class="line">//打印结果为[1,2,3,4,5,6]  通过Arrays.toString()方法转化打印出数组的具体数值</div></pre></td></tr></table></figure></p>
+<p>###3.连接两个数组:ArrayUtils.addAll()方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">int[] intArray1 = &#123; 1, 2, 3, 4, 5 &#125;;</div><div class="line">int[] intArray2 = &#123; 6, 7, 8, 9, 10 &#125;;</div><div class="line"></div><div class="line">int[] allArray = ArrayUtils.addAll(intArray, intArray2);</div><div class="line">//addAll方法将两个数组连接成一个数组</div></pre></td></tr></table></figure></p>
+<p>###4.将数组中的元素以字符串的形式输出:StringUtils.join()方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123;1,2,3,4,5,6&#125;;</div><div class="line">String j = StringUtils.join(new String[] &#123; &quot;a&quot;, &quot;b&quot;, &quot;c&quot; &#125;, &quot;, &quot;);</div><div class="line">System.out.println(j);</div><div class="line">// 打印结果：a, b, c</div></pre></td></tr></table></figure></p>
+<p><code>注:使用StringUtils中的join方法，可以将数组中的元素以一个字符串的形式输出，同时要导入org.apache.commons.lang.StringUtils;</code></p>
+<p>###5.从Array中创建ArrayList:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123;1,2,3,4&#125;;</div><div class="line">ArrayList&lt;int&gt; arrayList = new ArrayList&lt;int&gt;(Arrays.asList(intArray));</div><div class="line"></div><div class="line">System.out.println(arrayList);</div><div class="line">//打印结果为：[1,2,3,4]</div></pre></td></tr></table></figure></p>
+<p><code>注：因为ArrayList是动态链表，将Array转换成ArrayList，可以更方便地对ArrayList进行增删改，不需要循环Array将每一个元素加入到ArrayList中，用以上的代码即可简单实现转换</code></p>
+<p>###6.将Array转化成Set集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String[] stringArray = &#123; &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot; &#125;;</div><div class="line">Set&lt;String&gt; set = new HashSet&lt;String&gt;(Arrays.asList(stringArray));</div><div class="line">System.out.println(set);</div><div class="line">//[d, e, b, c, a]</div></pre></td></tr></table></figure></p>
+<p><code>注：在Java中使用Set，可以方便地将需要的类型以集合类型保存在一个变量中，主要应用在显示列表。同样可以先将Array转换成List，然后再将List转换成Set</code></p>
+<p>###7.数组翻转:ArrayUtils.reverse()方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123; 6, 1, 3, 4, 5 &#125;;</div><div class="line">ArrayUtils.reverse(intArray);</div><div class="line">System.out.println(Arrays.toString(intArray));</div><div class="line">//打印结果：[5, 4, 3, 1, 6]</div></pre></td></tr></table></figure></p>
+<p>###8.数组升序排列:Arrays.sort()方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int[] intArray=&#123;0,15,-14,45,20,70&#125;;  </div><div class="line">Arrays.sort(intArray); </div><div class="line">System.out.println(Arrays.toString(intArray));</div><div class="line">//打印结果：[-14, 0, 15, 20, 45, 70]</div></pre></td></tr></table></figure></p>
+<p><code>注：导入java.util.arrays类可以进行数组的排序、比较和填充。当指定数组对象为null时，这些方法都抛出nullpointexception异常，要降序取数据可以从后到前循环。</code></p>
+<p>###9.从数组中移除一个元素：ArrayUtils.removeElement()方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123; 1, 2, 3, 4, 5 &#125;;</div><div class="line">int[] removed = ArrayUtils.removeElement(intArray, 3);</div><div class="line">//重新定义一个数组来接受被移除数据后的数组</div><div class="line"></div><div class="line">System.out.println(Arrays.toString(removed));</div><div class="line">//打印结果：[1, 2, 4, 5]</div></pre></td></tr></table></figure></p>
+<p><code>注：ArrayUtils.removeElement(int[] array, int element)方法参数中，第一个是传进去处理的数组，第二个参数是指该数组中的具体元素，注意不是索引</code></p>
+<p>###10.检查数组中是否包含某一个值:Arrays.asList().contains()方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String[] stringArray = &#123; &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot; &#125;;</div><div class="line">boolean b = Arrays.asList(stringArray).contains(&quot;a&quot;);</div><div class="line">System.out.println(b);</div><div class="line">//打印结果： true</div></pre></td></tr></table></figure></p>
+<p>###11.复制数组Arrays.copyOf()方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123;1, 2, 3, 4, 5&#125;;</div><div class="line">int[] intArray1 = Arrays.copyOf(intArray, 5);  </div><div class="line">int[] intArray2 = Arrays.copyOfRange(intArray, 1, 3);</div><div class="line">System.out.println(Arrays.toString(intArray1));</div><div class="line">//打印结果：[1,2,3,4,5]</div><div class="line">System.out.println(Arrays.toString(intArray2));</div><div class="line">//打印结果：[2,3]</div></pre></td></tr></table></figure></p>
+<p><code>注：
+int[] copyOf(int[] original, int newLength)复制数组，指定新数组长度     
+int[] copyOfRange(int[] original, int from, int to)复制数组，指定所复制的原数组的索引</code></p>
+<p>###12.比较两个数组是否相等:Arrays.equals(intArray1, intArray2)方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">int[] intArray1 = &#123;1, 2, 3, 4, 5&#125;;</div><div class="line">int[] intArray2 = &#123;1, 2, 3, 4, 5&#125;;</div><div class="line">System.out.println(intArray1.equals(intArray2));</div><div class="line">//打印结果：false</div><div class="line">System.out.println(Arrays.equals(intArray1, intArray2));</div><div class="line">//打印结果：true</div></pre></td></tr></table></figure></p>
+<p><code>注：intArray1.equals(intArray2)比较的是栈里的地址引用，Arrays.equals(intArray1, intArray2)比较的是数组内元素的具体值是否相同</code></p>
+<p>##二、数组的常用属性</p>
+<p>###1.length属性</p>
+<blockquote>
+<p>表示数组的长度，即数组中元素的个数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123;1, 2, 3, 4, 5&#125;;</div><div class="line">System.out.println(intArray.length);</div><div class="line">//打印结果为：5</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="shawcz.github.io/2017/03/09/First-Artic/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -627,7 +773,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
