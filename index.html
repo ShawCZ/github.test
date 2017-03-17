@@ -329,104 +329,16 @@
       
         
           
-            <h1 id="Java-Web环境搭建"><a href="#Java-Web环境搭建" class="headerlink" title="Java Web环境搭建"></a>Java Web环境搭建</h1><p>##准备工作<br>下载:<code>jak1.7</code> ; <code>Tomcat7</code>; <code>Navicat</code>; <code>MyEclipse8.6</code>;<br><code>Mysql5.0.22</code></p>
-<p>在<code>E:\Program Files</code>里分别新建Java、Tomcat、Navicat、MyEclipse文件夹；在<code>E:\work</code>中新建<code>workpace</code>文件夹</p>
-<h2 id="JDK安装与配置"><a href="#JDK安装与配置" class="headerlink" title="JDK安装与配置"></a>JDK安装与配置</h2><pre><code>JDK是 Java 语言的软件开发工具包，主要用于移动设备、嵌入式设备上的java应用程序。JDK是整个java开发的核心，它包含了JAVA的运行环境，JAVA工具和JAVA基础的类库。
-</code></pre><h3 id="安装JDK-32位"><a href="#安装JDK-32位" class="headerlink" title="安装JDK(32位)"></a>安装JDK(32位)</h3><p><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">下载JDK</a><br>点击安装：<br>1.更改路径，选择在<code>E盘</code>新建的<code>Java8</code>文件夹<br><img src="http://i.imgur.com/kk4hMCm.png" alt=""><br><img src="./1479474114629.png" alt="Alt text"></p>
-<p>2.在<code>Java</code>文件夹内新建<code>jre8</code>文件夹：<br><img src="./1479473934394.png" alt="Alt text"><br><img src="./1479474206413.png" alt="Alt text"></p>
-<h3 id="配置JDK"><a href="#配置JDK" class="headerlink" title="配置JDK"></a>配置JDK</h3><table>
-<thead>
-<tr>
-<th style="text-align:left">环境变量</th>
-<th>路径</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">JAVA_HOME8</td>
-<td>E:\ProgramFiles\Java8\jdk1.8.0_65</td>
-</tr>
-<tr>
-<td style="text-align:left">path</td>
-<td>%JAVA_HOME8%\bin;</td>
-</tr>
-<tr>
-<td style="text-align:left">classpath</td>
-<td>.;%JAVA_HOME8%\lib\dt.jar;%JAVA_HOME8%\lib\tools.jar;</td>
-</tr>
-</tbody>
-</table>
-<p><img src="./8209e4c8-76dd-40a7-bc32-d8e8bbe7f826.png" alt="Alt text"><br><img src="./9861e6c8-0ab0-43c9-9031-a16fc5f9477b.png" alt="Alt text"><br><img src="./84c3b675-891a-4eab-9b8e-f93ba831162f.png" alt="Alt text"></p>
-<p>验证：<code>win+R</code>  输入<code>cmd</code>  接着输入命令：<code>java -version</code> 若弹出jdk版本信息，说明安装成功！</p>
-<h2 id="Mysql安装与配置"><a href="#Mysql安装与配置" class="headerlink" title="Mysql安装与配置"></a>Mysql安装与配置</h2><pre><code>MySQL 是一个关系型数据库管理系统，因为体积小、速度快而受到大家的喜欢，但是MySQL没有图形化的操作界面。
-</code></pre><p>###安装Mysql<br>1.双击Setup.exe文件，开始mysql的安装。出现下面的窗口<br><img src="./1479475114652.png" alt="Alt text"></p>
-<p>2.点击Next开始下一步安装。默认是<code>Typical</code>，默认安装在C盘<br><img src="./1479475228305.png" alt="Alt text"></p>
-<p>3.这里需要不选择组件和更改文件夹位置，点击<code>next</code></p>
-<p>4.点击<code>Install</code>开始安装<br><img src="./1479475323903.png" alt="Alt text"></p>
-<p>5.安装完成，选择<code>Skip Sign-Up</code></p>
-<p>6.点击完成<code>Finsh</code><br><img src="./1479475461689.png" alt="Alt text"></p>
-<p>###配置Mysql<br>7.点击<code>Next</code>继续<br><img src="./1479475509823.png" alt="Alt text"></p>
-<p>8.选择<code>Detailed Configuration</code>，点<code>Next</code><br><img src="./1479475535113.png" alt="Alt text"></p>
-<p>9.下面这个选项是选择mysql应用类型（第一种是开发服务器，将只用尽量少的内存，第二种是普通WEB服务器，将使用中等数量内存，最后一种是这台服务器上面只跑mysql数据库，将占用全部的内存，）这里选择开发服务器<code>Developer Machine</code>，占用尽量少的内存<br><img src="./1479475600643.png" alt="Alt text"></p>
-<p>10.接下来选择数据库用途，（第一种是多功能用途，将把数据库优化成很好的innodb存储类型和高效率的myisam存储类型，第二种是只用于事务处理类型，最好的优化innodb，但同时也支持myisam，最后一种是非事务处理类型，适合于简单的应用，只有不支持事务的myisam类型是被支持的）一般选择第一种多功能<code>Multifunctional Database</code><br><img src="./1479475697976.png" alt="Alt text"></p>
-<p>11.下面是选择数据存放位置，默认<br><img src="./1479475824312.png" alt="Alt text"></p>
-<p>12.选择mysql允许的最大连接数，第一种是最大20个连接并发数，第二种是最大500个并发连接数，最后一种是自定义，选择最后一种<code>Manual Setting</code> 选择<code>15</code><br><img src="./1479475902442.png" alt="Alt text"></p>
-<p>13.下面是选择数据库监听的端口，一般默认是<code>3306</code>，如果改成其他端口，以后连接数据库的时候都要记住修改的端口，否则不能连接mysql数据库，比较麻烦，这里不做修改，用mysq的默认端口：<code>3306</code>。接下来默认latin1。<br><img src="./1479476022370.png" alt="Alt text"><br><img src="./1479476084026.png" alt="Alt text"></p>
-<p>14.这一步是设置mysql的超级用户密码，这个超级用户非常重要，对mysql拥有全部的权限，请设置好并牢记超级用户的密码，下面有个复选框是选择是否允许远程机器用root用户连接到你的mysql服务器上面，如果有这个需求，也勾选<br><img src="./1479476164003.png" alt="Alt text"></p>
-<p>15.当两次输入的密码一致后，记住该密码，点<code>Next</code>继续。 等待就完成了。<br><img src="./1479476192376.png" alt="Alt text"></p>
-<p>###容易出现的问题<br>mysql 安装到最后一步时<code>start service</code> 为失败状态。</p>
-<p>方式1  MySQL安装是出现could not start the service mysql error:0 提示错误<br>解决方法：首 先，在<code>管理工具</code>-&gt;<code>服务</code>里面将<code>MySQL</code>的服务给停止，然后打开<code>cmd</code>进入你的    <code>MySQL bin</code>目录下，例如 <code>C:\Program Files\MySQL\MySQL Server 5.0\bin</code> 然后使用如下命令<code>mysqld-nt -remove</code> 然后就会显示……success! 好了下面进入添加删除程序，找到MySQL选择卸载，记得选择remove。最后将MySQL目录删除，还有数据库的目录也删除<br>方式2<br>查看<code>服务</code>中有没有mysql,如果有将该服务停掉; 安装mysql 5.1.33,在运行Server Instance Configuration wizard时的Execute configurattion步骤中的第三项Start Service进出错,<code>错误提示为Could not start the service MySQL (出现这种情况一般是因为装过mysql，卸载不干净造成的</code>。卸载后重启后再重装。注意看下服务，如果未能卸载，可以用<code>mysqld-nt -remove卸载</code>)<br>在控制面板中运行添加删除程序，将mysql卸载; 卸载后打开注册表，查看<code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services</code>下的键值，如果有<code>相关mysql键值(mysql、mysqladmin)则删掉</code>，即可;<br>重启，将mysql的<code>安装残余目录删掉</code>(查看服务，此时服务中已没有mysql); 重新安装mysql.安装后先不要运行Server Instance Configuration wizard，重启后在开始菜单中运行该向导，即可.</p>
-<h2 id="Navicat安装与配置"><a href="#Navicat安装与配置" class="headerlink" title="Navicat安装与配置"></a>Navicat安装与配置</h2><pre><code>`Navicat for MySQL`是一套专为MySQL设计的强大数据库管理及开发工具
-</code></pre><h3 id="安装Navicat"><a href="#安装Navicat" class="headerlink" title="安装Navicat"></a>安装Navicat</h3><p>1.点击Navicat 8 for MySQL安装文件<br><img src="./1479476884421.png" alt="Alt text"></p>
-<p>2.选择“我同意”，点击“下一步”<br><img src="./1479476922897.png" alt="Alt text"></p>
-<p>3.选择安装新建的目录，点击“下一步”<br><img src="./1479476987783.png" alt="Alt text"></p>
-<p>4.保留默认值，点击“下一步”<br><img src="./1479477010460.png" alt="Alt text"></p>
-<p>5.选择是否创建桌面图标和快捷图标，保留默认值，点击“下一步”<br><img src="./1479477051242.png" alt="Alt text"></p>
-<p>6.点击“安装”<br><img src="./1479477068636.png" alt="Alt text"></p>
-<p>7.安装结束后，点击“完成”</p>
-<h2 id="Tomcat安装与配置"><a href="#Tomcat安装与配置" class="headerlink" title="Tomcat安装与配置"></a>Tomcat安装与配置</h2><pre><code>Tomcat 6.0（ Servlet和JSP容器，具有处理HTML页面的功能）
-</code></pre><h3 id="安装Tomcat7"><a href="#安装Tomcat7" class="headerlink" title="安装Tomcat7"></a>安装Tomcat7</h3><p>1.双击运行：<code>apache-tomcat-7.0.53.exe</code>；单击<code>next</code>下一步阅读协议<br><img src="./1479477566850.png" alt="Alt text"></p>
-<p>2.单击<code>I Agree</code>：<br><img src="./1479477598333.png" alt="Alt text"></p>
-<p>3.单击<code>next</code>：<br><img src="./1479477629915.png" alt="Alt text"></p>
-<p>4.查看端口号，选择默认，单击<code>next</code>：<br><img src="./1479477699077.png" alt="Alt text"></p>
-<p>5.选择<code>E:\Program Files\Java\jre7</code>，单击<code>next</code>：<br><img src="./1479477819007.png" alt="Alt text"></p>
-<p>6.选择安装目录，安装到<code>E:\Program Files\Apache Software Foundation\Tomcat 7.0</code>单击<code>next</code>：<br><img src="./1479477894459.png" alt="Alt text"></p>
-<p>7.安装完成<br><img src="./1479477918645.png" alt="Alt text"></p>
-<p>###配置Tomcat环境变量<br>| 环境变量   |   路径 |<br>| :——– || :——– |<br>| TOMCAT_HOME | E:\Program Files\Tomcat7.0 |<br>| CATALINA_HOME | E:\Program Files\Tomcat7.0 |<br>|classpath     |%CATALINA_HOME%\lib\servlet-api.jar; |</p>
-<p>###验证Tomcat<br> 8.在<code>E:\Program Files\Tomcat7.0\bin</code>选择<code>Tomcat7.exe</code>启动服务器<br> <img src="./1479478015856.png" alt="Alt text"></p>
-<p>9.启动完成<br><img src="./1479478048722.png" alt="Alt text"></p>
-<p>10.访问服务器：<a href="http://localhost:8080/" target="_blank" rel="external">http://localhost:8080/</a><br><img src="./1479478067493.png" alt="Alt text"><br><code>若出现此网页，则安装成功！</code></p>
-<h2 id="MyEclipse安装与配置"><a href="#MyEclipse安装与配置" class="headerlink" title="MyEclipse安装与配置"></a>MyEclipse安装与配置</h2><pre><code>MyEclipse，是在eclipse 基础上加上自己的插件开发而成的功能强大的企业级集成开发环境，主要用于Java、Java EE以及移动应用的开发。MyEclipse的功能非常强大，支持也十分广泛，尤其是对各种开源产品的支持相当不错。
-</code></pre><p>###安装MyEclipse<br>1.双击安装包，进入安装的步骤，就能进入安装过程，等这个进入条到了百分之百进行下一步。<br><img src="./1479531309078.png" alt="Alt text"></p>
-<p>2.然后进入到等进度条完成以后进入下一步。<br><img src="./1479531337207.png" alt="Alt text"></p>
-<p>3.点击next，然后进入进图条界面，然后进入的界面将复选框选中。不然不能点击下一步哦，<br><img src="./1479531367755.png" alt="Alt text"><br><img src="./1479531392790.png" alt="Alt text"></p>
-<p>4.点击下一步，选择一个其E盘的安装路径<code>E:\Program Files\myeclipse_8.6</code>，然后安装即可。<br><img src="./1479531485864.png" alt="Alt text"></p>
-<p>5.进入这个页面后，等待一下，稍有点慢。<br><img src="./1479531503331.png" alt="Alt text"></p>
-<p>6.等安装完以后，它会自动启动，选择<code>E:\work\workspace</code>路径<br><img src="./1479531570632.png" alt="Alt text"></p>
-<p>###配置MyEclipse<br>7.<code>集成jdk</code></p>
-<p>（1）在<code>Java-Installed JREs</code>下，点击右边的<code>add</code>按钮，弹出安装选择框，选择<code>Standard VM</code>，然后<code>next</code>。<br><img src="./1479531730268.png" alt="Alt text"></p>
-<p>（2）在接下来弹出的选择安装目录选择框中，选择本电脑上的<code>jdk的安装目录</code>。<br><img src="./1479531784211.png" alt="Alt text"></p>
-<p>（3）选择完成后，返回jdk列表，<code>勾选</code>刚添加的jdk。<br><img src="./1479531803235.png" alt="Alt text"></p>
-<p>8.<code>集成tomcat</code></p>
-<p>（1）在<code>Myeclipse</code> -<code>Servers</code>-<code>Tomcat</code>-<code>Tomcat</code> 7.x路径下，将<code>tomcat server</code>由<code>disable</code> 变成 <code>enable</code>。</p>
-<p>选择<code>tomcat home directory</code>的安装路径，即本机安装<code>tomcat</code>的路径。当选择了tomcat home directory路径后，<code>tomcat base directory</code>和<code>tomcat temp directory</code>的路径会自动带出，不需要修改。<br><img src="./1479531917326.png" alt="Alt text"></p>
-<p>（2）展开<code>Myeclipse</code> -<code>Servers</code>-<code>Tomcat</code>-<code>Tomcat 7.x</code>的下拉选项，选择JDK，在<code>Tomcat JDK name</code>下拉框中选择在本机安装的jdk。<br><img src="./1479532046442.png" alt="Alt text"></p>
-<p>（3）将Launch由debug模式改成run模式。最后，点击apply按钮。<br><img src="./1479532086314.png" alt="Alt text"></p>
-<p>9.将各类文档的编码改为<code>utf-8</code><br>在<code>Myeclipse-Files and Editors</code>下，将所有编码设为UTF-8<br><img src="./1479532190917.png" alt="Alt text"><br><img src="./1479532197044.png" alt="Alt text"></p>
-<p>10.将<code>tomcat的编码改为utf-8</code></p>
-<p>在Tomcat安装文件夹下的<code>conf文件夹</code>下修改<code>server.xml</code>文件，即在<code>&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; connectionTimeout=&quot;20000&quot;  redirectPort=&quot;8443&quot; /&gt;</code>中填加<code>URIEncoding=&quot;UTF-8&quot;</code>。<br><img src="./1479532487878.png" alt="Alt text"></p>
-<p>11.<code>MyEclipse的提示功能</code></p>
-<p>打开<code>Java – Editor - Content Assist</code>面板，在<code>Auto – Activation</code>下：勾选<code>enable auto  activation</code></p>
-<p>在<code>Auto activation trigger for Java</code>的输入框中输入：<code>abcdefgihjklmnopqrstuvwxyz(,</code><br>保存设置<br><img src="./1479532577070.png" alt="Alt text"></p>
-<p>###注册MyEclipse<br>1.点击工具栏<code>File--New--Java Project</code>,工程命名为<code>Register(注册)</code>,点击Finish。<br><img src="./1482915538018.png" alt="Alt text"></p>
-<p>2.在<strong>src</strong>文件夹右击选择<code>New--Package</code>,命名为<code>test</code>，点击Finish。<br><img src="./1482915819601.png" alt="Alt text"></p>
-<p>3.在<strong>test</strong>文件夹右击选择<code>New--Class</code>,命名为<code>MyEclipseKeyGen</code>，点击Finish。<br><img src="./1482915974230.png" alt="Alt text"></p>
-<p>4.打开<code>.txt注册文件</code>,<code>Ctrl+A</code>选择全部，<code>Ctrl+C</code>复制，把内容<code>Ctrl+V</code>粘贴到刚刚新建的java源文件,<code>Ctrl+S</code>保存.<br><img src="./1482916180264.png" alt="Alt text"><br><img src="./1482916274053.png" alt="Alt text"></p>
-<p>5.点击Run，在下方控制台自定义输入内容，回车结束。<br><img src="./1482916485055.png" alt="Alt text"></p>
-<p>6.点击工具栏上的<code>MyEclipse--subscription information</code>,填上你刚刚注册的序列号。<br><code>注意：注册时必需断掉网络，不然注册不成功！</code><br><img src="./1482916991342.png" alt="Alt text"><br><img src="./1482917038031.png" alt="Alt text"></p>
-<p>这样就注册好了，尽情使用吧~~~</p>
-
-          
+          Java Web环境搭建##准备工作下载:jak1.7 ; Tomcat7; Navicat; MyEclipse8.6;Mysql5.0.22
+在E:\Program Files里分别新建Java、Tomcat、Navicat、MyEclipse文件夹；在E:\work中新建workpace文件夹
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/09/Java Web环境搭建/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -542,37 +454,17 @@
       
         
           
-            <p>#Java数组:Array#</p>
-<p>##一、数组的常用方法##</p>
-<p>###1.定义一个数组###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int[] aArray = new int[10];               //动态定义</div><div class="line">String[] bArray = &#123;&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;&#125;       //两种静态定义方式</div><div class="line">String[] bArray = new String[]&#123;&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;&#125;</div></pre></td></tr></table></figure></p>
-<p><code>注:(1)动态定义数组指定了数组的长度，但没有初始化值，没有给定具体的元素</code><br><code>(2)静态定义数组在分配内存空间的同时还初始化了值，即给定具体的元素</code></p>
-<p>###2.打印一个数组:toString()方法###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123;1,2,3,4,5,6&#125;;</div><div class="line">String intArrayString = Arrays.toString(intAray);</div><div class="line"></div><div class="line">System.out.println(intArray);          </div><div class="line">//打印结果为乱码，因为intArray只是一个地址引用，存在与栈里；</div><div class="line"></div><div class="line">System.out.println(intArrayString);    </div><div class="line">//打印结果为[1,2,3,4,5,6]  通过Arrays.toString()方法转化打印出数组的具体数值</div></pre></td></tr></table></figure></p>
-<p>###3.连接两个数组:ArrayUtils.addAll()方法###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">int[] intArray1 = &#123; 1, 2, 3, 4, 5 &#125;;</div><div class="line">int[] intArray2 = &#123; 6, 7, 8, 9, 10 &#125;;</div><div class="line"></div><div class="line">int[] allArray = ArrayUtils.addAll(intArray, intArray2);</div><div class="line">//addAll方法将两个数组连接成一个数组</div></pre></td></tr></table></figure></p>
-<p>###4.将数组中的元素以字符串的形式输出:StringUtils.join()方法###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123;1,2,3,4,5,6&#125;;</div><div class="line">String j = StringUtils.join(new String[] &#123; &quot;a&quot;, &quot;b&quot;, &quot;c&quot; &#125;, &quot;, &quot;);</div><div class="line">System.out.println(j);</div><div class="line">// 打印结果：a, b, c</div></pre></td></tr></table></figure></p>
-<p><code>注:使用StringUtils中的join方法，可以将数组中的元素以一个字符串的形式输出，同时要导入org.apache.commons.lang.StringUtils;</code></p>
-<p>###5.从Array中创建ArrayList:###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123;1,2,3,4&#125;;</div><div class="line">ArrayList&lt;int&gt; arrayList = new ArrayList&lt;int&gt;(Arrays.asList(intArray));</div><div class="line"></div><div class="line">System.out.println(arrayList);</div><div class="line">//打印结果为：[1,2,3,4]</div></pre></td></tr></table></figure></p>
-<p><code>注：因为ArrayList是动态链表，将Array转换成ArrayList，可以更方便地对ArrayList进行增删改，不需要循环Array将每一个元素加入到ArrayList中，用以上的代码即可简单实现转换</code></p>
-<p>###6.将Array转化成Set集合###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String[] stringArray = &#123; &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot; &#125;;</div><div class="line">Set&lt;String&gt; set = new HashSet&lt;String&gt;(Arrays.asList(stringArray));</div><div class="line">System.out.println(set);</div><div class="line">//[d, e, b, c, a]</div></pre></td></tr></table></figure></p>
-<p><code>注：在Java中使用Set，可以方便地将需要的类型以集合类型保存在一个变量中，主要应用在显示列表。同样可以先将Array转换成List，然后再将List转换成Set</code></p>
-<p>###7.数组翻转:ArrayUtils.reverse()方法###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123; 6, 1, 3, 4, 5 &#125;;</div><div class="line">ArrayUtils.reverse(intArray);</div><div class="line">System.out.println(Arrays.toString(intArray));</div><div class="line">//打印结果：[5, 4, 3, 1, 6]</div></pre></td></tr></table></figure></p>
-<p>###8.数组升序排列:Arrays.sort()方法###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int[] intArray=&#123;0,15,-14,45,20,70&#125;;  </div><div class="line">Arrays.sort(intArray); </div><div class="line">System.out.println(Arrays.toString(intArray));</div><div class="line">//打印结果：[-14, 0, 15, 20, 45, 70]</div></pre></td></tr></table></figure></p>
-<p><code>注：导入java.util.arrays类可以进行数组的排序、比较和填充。当指定数组对象为null时，这些方法都抛出nullpointexception异常，要降序取数据可以从后到前循环。</code></p>
-<p>###9.从数组中移除一个元素：ArrayUtils.removeElement()方法###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123; 1, 2, 3, 4, 5 &#125;;</div><div class="line">int[] removed = ArrayUtils.removeElement(intArray, 3);</div><div class="line">//重新定义一个数组来接受被移除数据后的数组</div><div class="line"></div><div class="line">System.out.println(Arrays.toString(removed));</div><div class="line">//打印结果：[1, 2, 4, 5]</div></pre></td></tr></table></figure></p>
-<p><code>注：ArrayUtils.removeElement(int[] array, int element)方法参数中，第一个是传进去处理的数组，第二个参数是指该数组中的具体元素，注意不是索引</code></p>
-<p>###10.检查数组中是否包含某一个值:Arrays.asList().contains()方法###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String[] stringArray = &#123; &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot; &#125;;</div><div class="line">boolean b = Arrays.asList(stringArray).contains(&quot;a&quot;);</div><div class="line">System.out.println(b);</div><div class="line">//打印结果： true</div></pre></td></tr></table></figure></p>
-<p>###11.复制数组Arrays.copyOf()方法###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123;1, 2, 3, 4, 5&#125;;</div><div class="line">int[] intArray1 = Arrays.copyOf(intArray, 5);  </div><div class="line">int[] intArray2 = Arrays.copyOfRange(intArray, 1, 3);</div><div class="line">System.out.println(Arrays.toString(intArray1));</div><div class="line">//打印结果：[1,2,3,4,5]</div><div class="line">System.out.println(Arrays.toString(intArray2));</div><div class="line">//打印结果：[2,3]</div></pre></td></tr></table></figure></p>
-<p><code>注：
-int[] copyOf(int[] original, int newLength)复制数组，指定新数组长度     
-int[] copyOfRange(int[] original, int from, int to)复制数组，指定所复制的原数组的索引</code></p>
-<p>###12.比较两个数组是否相等:Arrays.equals(intArray1, intArray2)方法###<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">int[] intArray1 = &#123;1, 2, 3, 4, 5&#125;;</div><div class="line">int[] intArray2 = &#123;1, 2, 3, 4, 5&#125;;</div><div class="line">System.out.println(intArray1.equals(intArray2));</div><div class="line">//打印结果：false</div><div class="line">System.out.println(Arrays.equals(intArray1, intArray2));</div><div class="line">//打印结果：true</div></pre></td></tr></table></figure></p>
-<p><code>注：intArray1.equals(intArray2)比较的是栈里的地址引用，Arrays.equals(intArray1, intArray2)比较的是数组内元素的具体值是否相同</code></p>
-<p>##二、数组的常用属性##</p>
-<p>###1.length属性###</p>
-<blockquote>
-<p>表示数组的长度，即数组中元素的个数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int[] intArray = &#123;1, 2, 3, 4, 5&#125;;</div><div class="line">System.out.println(intArray.length);</div><div class="line">//打印结果为：5</div></pre></td></tr></table></figure></p>
-</blockquote>
-
-          
+          #Java数组:Array#
+##一、数组的常用方法##
+###1.定义一个数组###123int[] aArray = new int[10];               //动态定义String[] bArray = &#123;&quot;a&quot;,&quot;b&quot;,&quo
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/09/Java数组/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
