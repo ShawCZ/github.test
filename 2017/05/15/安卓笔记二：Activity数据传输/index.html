@@ -1,0 +1,807 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shaw的开发之旅" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="一、Intent使用
+Intent是Android程序中各组件之间进行交互的一种重要方式，它不仅可以指明当前组件想要执行的动作，还可以在不同组件之间传递数据。一般可被用于启动活动、启动服务、以及发送广播等场景. `
+
+1.显示IntentIntent有多个构造函数的重载，其中一个是Intent(Context packageContext, Class&amp;lt;?&amp;gt; cls)。这个构造函数接收">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安卓笔记二：Activity数据传输">
+<meta property="og:url" content="shawcz.github.io/2017/05/15/安卓笔记二：Activity数据传输/index.html">
+<meta property="og:site_name" content="Shaw的开发之旅">
+<meta property="og:description" content="一、Intent使用
+Intent是Android程序中各组件之间进行交互的一种重要方式，它不仅可以指明当前组件想要执行的动作，还可以在不同组件之间传递数据。一般可被用于启动活动、启动服务、以及发送广播等场景. `
+
+1.显示IntentIntent有多个构造函数的重载，其中一个是Intent(Context packageContext, Class&amp;lt;?&amp;gt; cls)。这个构造函数接收">
+<meta property="og:updated_time" content="2017-05-17T13:31:43.311Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安卓笔记二：Activity数据传输">
+<meta name="twitter:description" content="一、Intent使用
+Intent是Android程序中各组件之间进行交互的一种重要方式，它不仅可以指明当前组件想要执行的动作，还可以在不同组件之间传递数据。一般可被用于启动活动、启动服务、以及发送广播等场景. `
+
+1.显示IntentIntent有多个构造函数的重载，其中一个是Intent(Context packageContext, Class&amp;lt;?&amp;gt; cls)。这个构造函数接收">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="shawcz.github.io/2017/05/15/安卓笔记二：Activity数据传输/"/>
+
+
+
+
+
+  <title> 安卓笔记二：Activity数据传输 | Shaw的开发之旅 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shaw的开发之旅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Step by step to subvert the life!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="shawcz.github.io/2017/05/15/安卓笔记二：Activity数据传输/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shaw">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shaw的开发之旅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                安卓笔记二：Activity数据传输
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-15T19:15:16+08:00">
+                2017-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、Intent使用"><a href="#一、Intent使用" class="headerlink" title="一、Intent使用"></a>一、Intent使用</h2><blockquote>
+<p>Intent是Android程序中各组件之间进行交互的一种重要方式，它不仅可以指明当前组件想要执行的动作，还可以在不同组件之间传递数据。一般可被用于启动活动、启动服务、以及发送广播等场景. `</p>
+</blockquote>
+<h3 id="1-显示Intent"><a href="#1-显示Intent" class="headerlink" title="1.显示Intent"></a>1.显示Intent</h3><p><code>Intent有多个构造函数的重载，其中一个是Intent(Context packageContext, Class&lt;?&gt; cls)。这个构造函数接收两个参数，第一个参数Context要求提供一个启动活动的上下文，第二个参数Class则是指定想要启动的目标活动，通过这个构造函数就可以构建出Intent的“意图”。</code></p>
+<pre><code>button1.setOnClickListener(new OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+        startActivity(intent);
+    }
+});
+</code></pre><h3 id="2-隐示Intent"><a href="#2-隐示Intent" class="headerlink" title="2.隐示Intent"></a>2.隐示Intent</h3><p><code>隐式Intent，它并不明确指出想要启动哪一个活动，而是指定了一系列更为抽象的action和category等信息，然后交由系统去分析这个Intent，并帮我们找出合适的活动去启动。通过在&lt;activity&gt;标签下配置&lt;intent-filter&gt;的内容，可以指定当前活动能够响应的action和category，打开AndroidManifest.xml，添加如下代码：</code></p>
+<pre><code>&lt;activity android:name=&quot;.SecondActivity&quot; &gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;com.example.activitytest.ACTION_START&quot; /&gt;
+        &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre><p><code>在&lt;action&gt;标签中指明当前活动可以响应com.example.activitytest.ACTION_ START这个action，而&lt;category&gt;标签则包含了一些附加信息，更精确地指明了当前的活动能够响应的Intent中还可能带有的category。只有&lt;action&gt;和&lt;category&gt;中的内容同时能够匹配上Intent中指定的action和category时，这个活动才能响应该Intent。修改FirstActivity中按钮的点击事件，代码如下所示：</code></p>
+<pre><code>button1.setOnClickListener(new OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(&quot;com.example.activitytest.ACTION_START&quot;);
+        startActivity(intent);
+    }
+});
+</code></pre><p><code>使用了Intent的另一个构造函数，直接将action的字符串传了进去，表明我们想要启动能够响应com.example.activitytest.ACTION_START这个action的活动。&lt;action&gt;和&lt;category&gt;同时匹配上才能响应,因为android.intent.category.DEFAULT是一种默认的category，在调用startActivity()方法的时候会自动将这个category添加到Intent中.</code></p>
+<h3 id="3-intent传值"><a href="#3-intent传值" class="headerlink" title="3.intent传值"></a>3.intent传值</h3><p>第一个activity传值：</p>
+<pre><code>String data = &quot;Hello SecondActivity&quot;;
+Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+intent.putExtra(&quot;extra_data&quot;, data);
+startActivity(intent);
+</code></pre><p>第二个activity接收值：</p>
+<pre><code>Intent intent = getIntent();
+String data = intent.getStringExtra(&quot;extra_data&quot;);
+</code></pre><h3 id="4-返回数据给上一个活动"><a href="#4-返回数据给上一个活动" class="headerlink" title="4.返回数据给上一个活动"></a>4.返回数据给上一个活动</h3><p><code>Activity中还有一个startActivityForResult()方法也是用于启动活动的，但这个方法期望在活动销毁的时候能够返回一个结果给上一个活动,startActivityForResult()方法接收两个参数，第一个参数还是Intent，第二个参数是请求码，用于在之后的回调中判断数据的来源</code></p>
+<p><code>startActivityForResult()方法来启动SecondActivity，请求码只要是一个唯一值就可以了，这里传入了1。</code></p>
+<pre><code>button.setOnClickListener(new OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+        startActivityForResult(intent, 1);
+    }
+});
+</code></pre><p><code>把要传递的数据存放在Intent中，然后调用了setResult()方法,用于向上一个活动返回数据的。setResult()方法接收两个参数，第一个参数用于向上一个活动返回处理结果，一般只使用RESULT_OK或RESULT_CANCELED这两个值，第二个参数则是把带有数据的Intent传递回去，然后调用了finish()方法来销毁当前活动。</code></p>
+<pre><code>button2.setOnClickListener(new OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent();
+        intent.putExtra(&quot;data_return&quot;, &quot;Hello FirstActivity&quot;);    
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+});
+</code></pre><p><code>使用startActivityForResult()方法来启动SecondActivity的，在SecondActivity被销毁之后会回调上一个活动的onActivityResult()方法，需要在FirstActivity中重写这个方法来得到返回的数据</code></p>
+<pre><code>@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data{
+    switch (requestCode) {
+    case 1:
+        if (resultCode == RESULT_OK) {
+            String returnedData = data.getStringExtra(&quot;data_return&quot;);
+            Log.d(&quot;FirstActivity&quot;, returnedData);
+        }
+        break;
+    default:
+    }
+}
+</code></pre><p><code>onActivityResult()方法带有三个参数，第一个参数requestCode，即在启动活动时传入的请求码。第二个参数resultCode，即在返回数据时传入的处理结果。第三个参数data，即携带着返回数据的Intent。由于在一个活动中有可能调用startActivityForResult()方法去启动很多不同的活动，每一个活动返回的数据都会回调到onActivityResult()这个方法中，因此首先要做的就是通过检查requestCode的值来判断数据来源。确定数据是从SecondActivity返回的之后，再通过resultCode的值来判断处理结果是否成功。</code></p>
+<p><code>如果用户在SecondActivity中并不是通过点击按钮，而是通过按下Back键回到FirstActivity，这样数据不就没法返回了吗？没错，不过这种情况还是很好处理的，我们可以通过重写onBackPressed()方法来解决这个问题，这样的话，当用户按下Back键，就会去执行onBackPressed()方法中的代码，我们在这里添加返回数据的逻辑就行</code></p>
+<pre><code>@Override
+public void onBackPressed() {
+    Intent intent = new Intent();
+    intent.putExtra(&quot;data_return&quot;, &quot;Hello FirstActivity&quot;);
+    setResult(RESULT_OK, intent);
+    finish();
+}
+</code></pre><h3 id="二、活动被回收了怎么办"><a href="#二、活动被回收了怎么办" class="headerlink" title="二、活动被回收了怎么办"></a>二、活动被回收了怎么办</h3><p><code>活动进入到了停止状态，可能被系统回收的，应用中有一个活动A，用户在活动A的基础上启动了活动B，活动A就进入了停止状态，这个时候由于系统内存不足，将活动A回收掉了，然后用户按下Back键返回活动A，还是会正常显示活动A的，只不过这时并不会执行onRestart()方法，而是会执行活动A的onCreate()方法，因为活动A在这种情况下会被重新创建一次。</code></p>
+<p><code>这样看上去好像一切正常，可是别忽略了一个重要问题，活动A中是可能存在临时数据和状态的。打个比方，MainActivity中有一个文本输入框，现在你输入了一段文字，然后启动NormalActivity，这时MainActivity由于系统内存不足被回收掉，过了一会你又点击了Back键回到MainActivity，你会发现刚刚输入的文字全部都没了，因为MainActivity被重新创建了。</code></p>
+<p><code>如果应用出现了这种情况，是会严重影响用户体验的，所以必须要想想办法解决这个问题。查阅文档可以看出，Activity中还提供了一个onSaveInstanceState()回调方法，这个方法会保证一定在活动被回收之前调用，因此我们可以通过这个方法来解决活动被回收时临时数据得不到保存的问题。</code></p>
+<p><code>onSaveInstanceState()方法会携带一个Bundle类型的参数，Bundle提供了一系列的方法用于保存数据，比如可以使用putString()方法保存字符串，使用putInt()方法保存整型数据，以此类推。每个保存方法需要传入两个参数，第一个参数是键，用于后面从Bundle中取值，第二个参数是真正要保存的内容。</code></p>
+<p>在MainActivity中添加如下代码就可以将临时数据进行保存：</p>
+<pre><code>@Override
+protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    String tempData = &quot;Something you just typed&quot;;
+    outState.putString(&quot;data_key&quot;, tempData);
+}
+</code></pre><p><code>一直使用的onCreate()方法其实也有一个Bundle类型的参数。这个参数在一般情况下都是null，但是当活动被系统回收之前有通过onSaveInstanceState()方法来保存数据的话，这个参数就会带有之前所保存的全部数据，只需要再通过相应的取值方法将数据取出即可。取出值之后再做相应的恢复操作就可以了，比如说将文本内容重新赋值到文本输入框上，这里我们只是简单地打印一下。</code></p>
+<p>修改MainActivity的onCreate()方法，如下所示：</p>
+<pre><code>@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    Log.d(TAG, &quot;onCreate&quot;);
+    requestWindowFeature(Window.FEATURE_NO_TITLE);
+    setContentView(R.layout.activity_main);
+    if (savedInstanceState != null) {
+        String tempData = savedInstanceState.getString(&quot;data_key&quot;);
+        Log.d(TAG, tempData);
+    }
+    ……
+}
+</code></pre><p><code>使用Bundle来保存和取出数据和使用Intent传递数据时也是用的类似的方法。Intent还可以结合Bundle一起用于传递数据的，首先可以把需要传递的数据都保存在Bundle对象中，然后再将Bundle对象存放在Intent里。到了目标活动之后先从Intent中取出Bundle，再从Bundle中一一取出数据。</code></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/12/安卓笔记一：Activity/" rel="next" title="安卓笔记一：Activity">
+                <i class="fa fa-chevron-left"></i> 安卓笔记一：Activity
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/17/安卓笔记二：启动Activity技巧/" rel="prev" title="安卓笔记二：启动Activity技巧">
+                安卓笔记二：启动Activity技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="shaw" />
+          <p class="site-author-name" itemprop="name">shaw</p>
+           
+              <p class="site-description motion-element" itemprop="description">Step by step to subvert the life!</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Intent使用"><span class="nav-text">一、Intent使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-显示Intent"><span class="nav-text">1.显示Intent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-隐示Intent"><span class="nav-text">2.隐示Intent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-intent传值"><span class="nav-text">3.intent传值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-返回数据给上一个活动"><span class="nav-text">4.返回数据给上一个活动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、活动被回收了怎么办"><span class="nav-text">二、活动被回收了怎么办</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shaw</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
