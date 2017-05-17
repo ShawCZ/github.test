@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="shawcz.github.io/"/>
-  <updated>2017-05-17T13:49:48.450Z</updated>
+  <updated>2017-05-17T13:57:06.641Z</updated>
   <id>shawcz.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>安卓笔记二：启动Activity技巧</title>
+    <title>安卓笔记三：启动Activity技巧</title>
     <link href="shawcz.github.io/2017/05/17/%E5%AE%89%E5%8D%93%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9A%E5%90%AF%E5%8A%A8Activity%E6%8A%80%E5%B7%A7/"/>
     <id>shawcz.github.io/2017/05/17/安卓笔记二：启动Activity技巧/</id>
     <published>2017-05-17T12:16:16.000Z</published>
-    <updated>2017-05-17T13:49:48.450Z</updated>
+    <updated>2017-05-17T13:57:06.641Z</updated>
     
     <content type="html"><![CDATA[<h3 id="一、知晓当前是在哪一个活动"><a href="#一、知晓当前是在哪一个活动" class="headerlink" title="一、知晓当前是在哪一个活动"></a>一、知晓当前是在哪一个活动</h3><p><code>根据程序当前的界面就能判断出这是哪一个活动。真正进入到企业之后，更有可能的是接手一份别人写的代码，因为你刚进公司就正好有一个新项目启动的概率并不高。阅读别人的代码时有一个很头疼的问题，就是你需要在某个界面上修改一些非常简单的东西，但是你半天找不到这个界面对应的活动是哪一个。</code></p>
 <p><code>在ActivityTest项目的基础上修改。首先需要新建一个BaseActivity继承自Activity，然后在BaseActivity中重写onCreate()方法，如下所示：</code></p>
@@ -33,8 +33,10 @@
 
 }
 </code></pre><p><code>在onCreate()方法中获取了当前实例的类名，并通过Log打印了出来。接下来让BaseActivity成为ActivityTest项目中所有活动的父类。修改FirstActivity、SecondActivity和ThirdActivity的继承结构，让它们不再继承自Activity，而是继承自BaseActivity。虽然项目中的活动不再直接继承自Activity了，但是它们仍然完全继承了Activity中的所有特性。现在重新运行程序，然后通过点击按钮分别进入到FirstActivity、SecondActivity和ThirdActivity的界面，这时观察LogCat中的打印信息，现在每当我们进入到一个活动的界面，该活动的类名就会被打印出来，这样我们就可以时时刻刻知晓当前界面对应的是哪一个活动了。</code></p>
-<h3 id="二、随时随地退出程序"><a href="#二、随时随地退出程序" class="headerlink" title="二、随时随地退出程序"></a>二、随时随地退出程序</h3><p>新建一个ActivityCollector类作为活动管理器，代码如下所示：<br>    public class ActivityCollector {</p>
-<pre><code>    public static List&lt;Activity&gt; activities = new ArrayList&lt;Activity&gt;();
+<h3 id="二、随时随地退出程序"><a href="#二、随时随地退出程序" class="headerlink" title="二、随时随地退出程序"></a>二、随时随地退出程序</h3><p>新建一个ActivityCollector类作为活动管理器，代码如下所示： </p>
+<pre><code>public class ActivityCollector {
+
+    public static List&lt;Activity&gt; activities = new ArrayList&lt;Activity&gt;();
 
     public static void addActivity(Activity activity) {
         activities.add(activity);
@@ -97,8 +99,10 @@ intent.putExtra(&quot;param1&quot;, &quot;data1&quot;);
 intent.putExtra(&quot;param2&quot;, &quot;data2&quot;);
 startActivity(intent);
 </code></pre><p><code>这样写是完全正确的，不管是从语法上还是规范上，只是在真正的项目开发中经常会有对接的问题出现。比如SecondActivity并不是由你开发的，但现在你负责的部分需要有启动SecondActivity这个功能，而你却不清楚启动这个活动需要传递哪些数据。这时无非就有两种办法，一个是你自己去阅读SecondActivity中的代码，二是询问负责编写SecondActivity的同事。</code></p>
-<p>修改SecondActivity中的代码，如下所示：<br>    public class SecondActivity extends BaseActivity {</p>
-<pre><code>    public static void actionStart(Context context, String data1, String data2) {
+<p>修改SecondActivity中的代码，如下所示：</p>
+<pre><code>public class SecondActivity extends BaseActivity {
+
+    public static void actionStart(Context context, String data1, String data2) {
         Intent intent = new Intent(context, SecondActivity.class);
         intent.putExtra(&quot;param1&quot;, data1);
         intent.putExtra(&quot;param2&quot;, data2);
@@ -132,10 +136,10 @@ startActivity(intent);
     <link href="shawcz.github.io/2017/05/15/%E5%AE%89%E5%8D%93%E7%AC%94%E8%AE%B0%E4%BA%8C%EF%BC%9AActivity%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93/"/>
     <id>shawcz.github.io/2017/05/15/安卓笔记二：Activity数据传输/</id>
     <published>2017-05-15T11:15:16.000Z</published>
-    <updated>2017-05-17T13:31:43.311Z</updated>
+    <updated>2017-05-17T13:57:50.883Z</updated>
     
     <content type="html"><![CDATA[<h2 id="一、Intent使用"><a href="#一、Intent使用" class="headerlink" title="一、Intent使用"></a>一、Intent使用</h2><blockquote>
-<p>Intent是Android程序中各组件之间进行交互的一种重要方式，它不仅可以指明当前组件想要执行的动作，还可以在不同组件之间传递数据。一般可被用于启动活动、启动服务、以及发送广播等场景. `</p>
+<p>Intent是Android程序中各组件之间进行交互的一种重要方式，它不仅可以指明当前组件想要执行的动作，还可以在不同组件之间传递数据。一般可被用于启动活动、启动服务、以及发送广播等场景. </p>
 </blockquote>
 <h3 id="1-显示Intent"><a href="#1-显示Intent" class="headerlink" title="1.显示Intent"></a>1.显示Intent</h3><p><code>Intent有多个构造函数的重载，其中一个是Intent(Context packageContext, Class&lt;?&gt; cls)。这个构造函数接收两个参数，第一个参数Context要求提供一个启动活动的上下文，第二个参数Class则是指定想要启动的目标活动，通过这个构造函数就可以构建出Intent的“意图”。</code></p>
 <pre><code>button1.setOnClickListener(new OnClickListener() {
